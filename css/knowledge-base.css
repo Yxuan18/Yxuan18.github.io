@@ -88,6 +88,7 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
   padding: 18px 0;
 }
 
@@ -121,6 +122,34 @@ a:focus {
 .kb-nav a:hover,
 .kb-nav a:focus {
   color: #fef3c7;
+}
+
+.language-toggle {
+  margin-left: 1.5rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(248, 250, 252, 0.35);
+  background: rgba(248, 250, 252, 0.12);
+  color: #f8fafc;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.language-toggle:hover,
+.language-toggle:focus {
+  background: rgba(248, 250, 252, 0.2);
+  border-color: rgba(248, 250, 252, 0.55);
+}
+
+.language-toggle:focus-visible {
+  outline: 3px solid rgba(248, 250, 252, 0.6);
+  outline-offset: 2px;
 }
 
 main#kb-app {
@@ -185,6 +214,12 @@ main#kb-app {
   font-size: 1.4rem;
   font-weight: 600;
 }
+
+.hero .quick-stats .stat small {
+  font-size: 0.8rem;
+  color: var(--kb-text-subtle);
+}
+
 
 .hero-actions {
   display: flex;
@@ -750,6 +785,11 @@ main#doc-app {
   .kb-nav {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .language-toggle {
+    align-self: flex-end;
+    margin-left: 0;
   }
 
   .hero,

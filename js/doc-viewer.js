@@ -7,6 +7,21 @@
       return;
     }
 
+    const i18n = window.I18N;
+
+    const translate = (key, replacements, fallback) => {
+      if (i18n && typeof i18n.t === 'function') {
+        return i18n.t(key, replacements || undefined);
+      }
+      if (typeof fallback === 'function') {
+        return fallback();
+      }
+      return fallback != null ? fallback : key;
+    };
+
+    const state = {
+      metadata: null
+    };
     let context;
     try {
       context = KB.normalizeContext(app);
@@ -19,7 +34,7 @@
     const params = new URLSearchParams(window.location.search);
     const docParam = params.get('doc');
     if (!docParam) {
-      renderFatalError('No article was specified. Please access this page from the knowledge base.');
+      renderFatalError(translate('errors.noArticleSpecified', null, 'No article was specified. Please access this page from the knowledge base.'));
       return;
     }
 
@@ -34,9 +49,19 @@
     const tocEl = document.getElementById('toc');
     const errorEl = document.getElementById('doc-error');
 
+    if (i18n && typeof i18n.onChange === 'function') {
+      i18n.onChange(() => {
+        renderDocument(false);
+      });
+    }
+
     loadDocument().catch(error => {
       console.error(error);
-      showError(error.message || 'Unable to load the requested article.');
+      if (error && error.code === 'draft') {
+        showError(translate('errors.draft', null, 'This article is marked as draft and is not published yet.'));
+      } else {
+        showError(error && error.message ? error.message : translate('errors.articleLoad', null, 'Unable to load the requested article.'));
+      }
     });
 
     async function loadDocument() {
@@ -45,56 +70,98 @@
       const parsed = KB.parseFrontMatter(markdown);
 
       if (KB.isDraft(parsed.data)) {
-        throw new Error('This article is marked as draft and is not published yet.');
+        const draftError = new Error('draft');
+        draftError.code = 'draft';
+        throw draftError;
       }
 
       const title = parsed.data.title || KB.slugToTitle(docPath);
-      const category = parsed.data.category || parsed.data.section || 'General';
+      const rawCategory = parsed.data.category || parsed.data.section || null;
+      const category = typeof rawCategory === 'string' ? rawCategory.trim() || null : rawCategory;
       const tags = KB.normalizeTags(parsed.data.tags);
       const updated = parsed.data.updated || parsed.data.lastUpdated || parsed.data.date || null;
       const readTime = KB.estimateReadTime(parsed.content);
 
+      if (!window.marked) {
+        throw new Error('Markdown renderer not found. Please ensure marked.js is loaded.');
+      }
+
+      state.metadata = {
+        title,
+        category,
+        tags,
+        updated,
+        readTime,
+        contentHtml: window.marked.parse(parsed.content)
+      };
+
+      renderDocument(true);
+    }
+
+    function renderDocument(includeContent = false) {
+      const metadata = state.metadata;
+      if (!metadata) {
+        return;
+      }
+
+      const { title, category, tags, updated, readTime, contentHtml } = metadata;
+
       if (titleEl) {
         titleEl.textContent = title;
       }
-      document.title = `${title} · Knowledge Base`;
+      document.title = translate('meta.docWindowTitle', { title }, () => `${title} · Knowledge Base`);
 
       if (categoryEl) {
-        categoryEl.textContent = category;
+        const trimmedCategory = typeof category === 'string' ? category.trim() : '';
+        const categoryLabel = trimmedCategory || translate('common.generalCategory', null, 'General');
+        if (categoryLabel) {
+          categoryEl.textContent = categoryLabel;
+          categoryEl.hidden = false;
+        } else {
+          categoryEl.hidden = true;
+        }
       }
 
-      if (updatedEl && updated) {
-        updatedEl.textContent = `Updated ${KB.formatDate(updated)}`;
-        updatedEl.hidden = false;
+      if (updatedEl) {
+        if (updated) {
+          const formatted = KB.formatDate(updated);
+          if (formatted) {
+            updatedEl.textContent = translate('list.updatedOn', { date: formatted }, () => `Updated ${formatted}`);
+            updatedEl.hidden = false;
+          } else {
+            updatedEl.hidden = true;
+          }
+        } else {
+          updatedEl.hidden = true;
+        }
       }
 
       if (readTimeEl) {
-        readTimeEl.textContent = `${readTime} min read`;
+        readTimeEl.textContent = translate('list.readTime', { minutes: readTime }, () => `${readTime} min read`);
       }
 
-      if (tagsEl) {
+      if (tagsEl && includeContent) {
         tagsEl.innerHTML = '';
-        if (tags.length) {
+        if (tags && tags.length) {
           tags.forEach(tag => {
             const link = document.createElement('a');
             link.href = `index.html?tag=${encodeURIComponent(tag.toLowerCase())}`;
             link.textContent = tag;
             tagsEl.appendChild(link);
           });
+          tagsEl.hidden = false;
         } else {
           tagsEl.hidden = true;
         }
       }
 
-      if (!window.marked) {
-        throw new Error('Markdown renderer not found. Please ensure marked.js is loaded.');
+      if (includeContent && contentHtml != null && contentEl) {
+        contentEl.innerHTML = contentHtml;
+        enhanceContent(contentEl);
+        buildToc(contentEl, tocEl);
+      } else if (!includeContent && contentEl) {
+        buildToc(contentEl, tocEl);
       }
-
-      const html = window.marked.parse(parsed.content);
-      contentEl.innerHTML = html;
-
-      enhanceContent(contentEl);
-      buildToc(contentEl, tocEl);
     }
 
     function enhanceContent(container) {
@@ -156,18 +223,20 @@
     }
 
     function showError(message) {
+      const fallbackMessage = translate('errors.articleLoad', null, 'Unable to load the requested article.');
+      const output = message || fallbackMessage;
       if (!errorEl) {
-        alert(message);
+        alert(output);
         return;
       }
       errorEl.hidden = false;
-      errorEl.textContent = message;
+      errorEl.textContent = output;
     }
 
     function renderFatalError(message) {
       const fatalContainer = document.createElement('div');
       fatalContainer.className = 'alert error';
-      fatalContainer.textContent = message;
+      fatalContainer.textContent = message || translate('errors.articleLoad', null, 'Unable to load the requested article.');
       app.innerHTML = '';
       app.appendChild(fatalContainer);
     }

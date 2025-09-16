@@ -238,7 +238,8 @@
       return null;
     }
 
-    return new Intl.DateTimeFormat(undefined, {
+    const locale = window.I18N && typeof window.I18N.getLocale === 'function' ? window.I18N.getLocale() : undefined;
+    return new Intl.DateTimeFormat(locale, {
       year: 'numeric',
       month: 'short',
       day: 'numeric'

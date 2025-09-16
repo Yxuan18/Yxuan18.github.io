@@ -34,6 +34,19 @@
       .map(tag => tag.trim().toLowerCase())
       .filter(Boolean);
 
+    const i18n = window.I18N;
+
+    const translate = (key, replacements, fallback) => {
+      if (i18n && typeof i18n.t === 'function') {
+        return i18n.t(key, replacements || undefined);
+      }
+      if (typeof fallback === 'function') {
+        return fallback();
+      }
+      return fallback != null ? fallback : key;
+    };
+
+    const getLanguage = () => (i18n && typeof i18n.getLanguage === 'function' ? i18n.getLanguage() : 'zh');
     const state = {
       docs: [],
       query: initialQuery,
@@ -41,6 +54,12 @@
       branch: null
     };
 
+    if (i18n && typeof i18n.onChange === 'function') {
+      i18n.onChange(() => {
+        buildTagCloud(state.docs);
+        applyFilters();
+      });
+    }
     if (searchInput) {
       searchInput.value = initialQuery;
       searchInput.addEventListener('input', event => {
@@ -51,7 +70,7 @@
 
     init().catch(error => {
       console.error(error);
-      showError(error.message || 'Unable to load knowledge base content.');
+      showError(error.message || translate('errors.loadKnowledgeBase', null, 'Unable to load knowledge base content.'));
     });
 
     async function init() {
@@ -87,7 +106,9 @@
           const title = parsed.data.title || KB.slugToTitle(entry.path);
           const description = parsed.data.description || KB.createExcerpt(parsed.content, 220);
           const tags = KB.normalizeTags(parsed.data.tags);
-          const category = parsed.data.category || parsed.data.section || 'General';
+          const rawCategory = parsed.data.category || parsed.data.section || null;
+          const category = typeof rawCategory === 'string' ? rawCategory.trim() || null : rawCategory;
+
           const updated = parsed.data.updated || parsed.data.lastUpdated || parsed.data.date || null;
           const readTime = KB.estimateReadTime(parsed.content);
 
@@ -131,7 +152,7 @@
       const query = state.query.toLowerCase();
       if (query) {
         results = results.filter(doc => {
-          const haystacks = [doc.title, doc.description, doc.category, doc.tags.join(' '), doc.content];
+          const haystacks = [doc.title, doc.description, getCategoryLabel(doc), doc.tags.join(' '), doc.content];
           return haystacks.some(haystack => haystack && haystack.toLowerCase().includes(query));
         });
       }
@@ -170,7 +191,7 @@
 
         const category = document.createElement('p');
         category.className = 'category';
-        category.textContent = doc.category;
+        category.textContent = getCategoryLabel(doc);
         article.appendChild(category);
 
         const title = document.createElement('h3');
@@ -188,30 +209,37 @@
         const meta = document.createElement('div');
         meta.className = 'meta';
         if (doc.updated) {
-          const date = document.createElement('span');
-          date.textContent = `Updated ${KB.formatDate(doc.updated)}`;
-          meta.appendChild(date);
+          const formattedDate = KB.formatDate(doc.updated);
+          if (formattedDate) {
+            const date = document.createElement('span');
+            date.textContent = translate('list.updatedOn', { date: formattedDate }, () => `Updated ${formattedDate}`);
+            meta.appendChild(date);
+          }
         }
         const readTime = document.createElement('span');
-        readTime.textContent = `${doc.readTime} min read`;
+        readTime.textContent = translate('list.readTime', { minutes: doc.readTime }, () => `${doc.readTime} min read`);
         meta.appendChild(readTime);
         article.appendChild(meta);
 
         if (doc.tags.length) {
           const tagList = document.createElement('div');
           tagList.className = 'tags';
-        doc.tags.forEach(tag => {
-          const chip = document.createElement('span');
-          chip.textContent = formatTagLabel(tag);
-          tagList.appendChild(chip);
-        });
+          doc.tags.forEach(tag => {
+            const chip = document.createElement('span');
+            chip.textContent = formatTagLabel(tag);
+            tagList.appendChild(chip);
+          });
           article.appendChild(tagList);
         }
 
         const link = document.createElement('a');
         link.href = `doc.html?doc=${encodeURIComponent(doc.path)}`;
         link.className = 'read-more';
-        link.innerHTML = 'Read article <svg aria-hidden="true" viewBox="0 0 20 20"><path fill="currentColor" d="M12.293 4.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 1 1-1.414-1.414L14.586 10H4a1 1 0 1 1 0-2h10.586l-2.293-2.293a1 1 0 0 1 0-1.414z"></path></svg>';
+        link.textContent = translate('list.readArticle', null, 'Read article');
+        link.insertAdjacentHTML(
+          'beforeend',
+          ' <svg aria-hidden="true" viewBox="0 0 20 20"><path fill="currentColor" d="M12.293 4.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 1 1-1.414-1.414L14.586 10H4a1 1 0 1 1 0-2h10.586l-2.293-2.293a1 1 0 0 1 0-1.414z"></path></svg>'
+        );
         article.appendChild(link);
 
         fragment.appendChild(article);
@@ -237,7 +265,9 @@
 
       if (!tagCounts.size) {
         const hint = document.createElement('p');
-        hint.textContent = 'Tags will appear once your articles include the "tags" front matter field.';
+
+        hint.textContent = translate('tags.hint', null, 'Tags will appear once your articles include the "tags" front matter field.');
+
         hint.className = 'tag-hint';
         tagCloud.appendChild(hint);
         return;
@@ -247,7 +277,9 @@
         .sort((a, b) => a.localeCompare(b))
         .forEach(tag => {
           const button = document.createElement('button');
-          const label = `${formatTagLabel(tag)} (${tagCounts.get(tag)})`;
+
+          const label = translate('tags.filterLabel', { tag: formatTagLabel(tag), count: tagCounts.get(tag) }, () => `${formatTagLabel(tag)} (${tagCounts.get(tag)})`);
+
           button.type = 'button';
           button.dataset.tag = tag;
           button.textContent = label;
@@ -280,7 +312,10 @@
 
       tagCloud.querySelectorAll('button[data-tag]').forEach(button => {
         const tag = button.dataset.tag;
-        button.dataset.active = state.activeTags.has(tag) ? 'true' : 'false';
+
+        const isActive = state.activeTags.has(tag);
+        button.dataset.active = isActive ? 'true' : 'false';
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
     }
 
@@ -299,11 +334,11 @@
       state.activeTags.forEach(tag => {
         const pill = document.createElement('span');
         pill.className = 'filter-pill';
-        pill.textContent = `Tag: ${formatTagLabel(tag)}`;
+        pill.textContent = translate('filters.tagPrefix', { tag: formatTagLabel(tag) }, () => `Tag: ${formatTagLabel(tag)}`);
 
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
-        removeButton.setAttribute('aria-label', `Remove tag filter ${tag}`);
+        removeButton.setAttribute('aria-label', translate('filters.removeTagAria', { tag: formatTagLabel(tag) }, () => `Remove tag filter ${tag}`));
         removeButton.textContent = '×';
         removeButton.addEventListener('click', () => {
           state.activeTags.delete(tag);
@@ -328,12 +363,16 @@
       }
 
       const pieces = [];
-      pieces.push(`${count} article${count === 1 ? '' : 's'}`);
+      const plural = count === 1 ? '' : 's';
+      pieces.push(translate('list.resultCount.count', { count, plural }, () => `${count} article${plural}`));
       if (state.query) {
-        pieces.push(`matching “${state.query}”`);
+        pieces.push(translate('list.resultCount.query', { query: state.query }, () => `matching “${state.query}”`));
       }
       if (state.activeTags.size) {
-        pieces.push(`filtered by ${Array.from(state.activeTags).map(formatTagLabel).join(', ')}`);
+        const tagLabels = Array.from(state.activeTags).map(formatTagLabel);
+        const separator = getLanguage() === 'zh' ? '、' : ', ';
+        const tagsText = tagLabels.join(separator);
+        pieces.push(translate('list.resultCount.tags', { tags: tagsText }, () => `filtered by ${tagLabels.join(', ')}`));
       }
 
       resultCount.textContent = pieces.join(' · ');
@@ -347,12 +386,14 @@
     }
 
     function showError(message) {
+      const fallbackMessage = translate('errors.loadKnowledgeBase', null, 'Unable to load knowledge base content.');
+      const output = message || fallbackMessage;
       if (!errorState) {
-        alert(message);
+        alert(output);
         return;
       }
       errorState.hidden = false;
-      errorState.textContent = message;
+      errorState.textContent = output;
       showLoading(false);
     }
 
@@ -376,6 +417,16 @@
       const queryString = params.toString();
       const newUrl = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
       window.history.replaceState({}, document.title, newUrl);
+    }
+    function getCategoryLabel(doc) {
+      if (!doc) {
+        return translate('common.generalCategory', null, 'General');
+      }
+      const value = typeof doc.category === 'string' ? doc.category.trim() : '';
+      if (!value) {
+        return translate('common.generalCategory', null, 'General');
+      }
+      return value;
     }
     function formatTagLabel(tag) {
       return tag
