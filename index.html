@@ -1,228 +1,139 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Knowledge Base | Markdown-powered help centre</title>
+    <meta name="description" content="Publish Markdown files to power a beautiful, searchable knowledge base without leaving your repository.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/knowledge-base.css">
+    <script defer src="js/kb-utils.js"></script>
+    <script defer src="js/knowledge-base.js"></script>
+  </head>
+  <body>
+    <header class="kb-header">
+      <div class="container">
+        <a class="brand" href="/">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a4 4 0 0 1 2.828 1.172l6 6A4 4 0 0 1 22 12v7a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-7a4 4 0 0 1 1.172-2.828l6-6A4 4 0 0 1 12 2Zm0 2a2 2 0 0 0-1.414.586l-6 6A2 2 0 0 0 4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7a2 2 0 0 0-.586-1.414l-6-6A2 2 0 0 0 12 4Z"/></svg>
+          <span>Knowledge Base</span>
+        </a>
+        <nav class="kb-nav" aria-label="Primary">
+          <a href="#top">Overview</a>
+          <a href="#articles">Articles</a>
+          <a href="#contribute">Contribute</a>
+        </nav>
       </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-test-my-site" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/06/test-my-site/" class="article-date">
-  <time datetime="2019-08-06T01:55:43.000Z" itemprop="datePublished">2019-08-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/06/test-my-site/">test_my_site</a>
-    </h1>
-  
+    </header>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/06/test-my-site/" data-id="cjyz6yuu60000fovw4bkdigsi" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+    <main id="kb-app" data-owner="Yxuan18" data-repo="Yxuan18.github.io" data-docs-path="docs">
+      <section class="hero" id="top">
+        <h1>Ship your knowledge base in minutes</h1>
+        <p>
+          Drop Markdown files into the <code>docs/</code> folder and they are instantly available on the web. Search, filter, and share
+          everything your team needs to know from a single, elegant hub.
+        </p>
+        <div class="hero-actions">
+          <a class="primary" href="#articles">Browse articles</a>
+          <a class="secondary" href="#contribute">Publish a new article</a>
+        </div>
+        <div class="quick-stats" aria-label="Knowledge base highlights">
+          <div class="stat">
+            <strong id="article-count">0</strong>
+            <span>Published articles</span>
+          </div>
+          <div class="stat">
+            <strong>Markdown first</strong>
+            <span>Author content locally and push to deploy automatically.</span>
+          </div>
+          <div class="stat">
+            <strong>Always searchable</strong>
+            <span>Filter by keywords, categories, and reusable tags.</span>
+          </div>
+        </div>
+      </section>
 
+      <section class="tools" aria-label="Knowledge base filters and tools">
+        <div class="search-bar">
+          <label for="kb-search">Search the knowledge base</label>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9Z"/></svg>
+          <input type="search" id="kb-search" name="search" placeholder="Search by title, topic, or keyword" autocomplete="off">
+        </div>
+        <p id="result-count" class="result-count" aria-live="polite"></p>
+        <div id="active-filters" class="active-filters" hidden aria-live="polite"></div>
+        <div>
+          <h2 class="visually-hidden">Popular tags</h2>
+          <div id="tag-cloud" class="tag-cloud" aria-label="Tag filters"></div>
+        </div>
+      </section>
 
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/06/hello-world/" class="article-date">
-  <time datetime="2019-08-06T01:42:01.009Z" itemprop="datePublished">2019-08-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/06/hello-world/">Hello World</a>
-    </h1>
-  
+      <section id="articles" aria-label="Knowledge base articles">
+        <div id="kb-loading" role="status">Loading articles…</div>
+        <div id="article-list" class="card-grid" hidden aria-live="polite"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <h2>Publish your first article</h2>
+          <p>Every Markdown file you add to <code>docs/</code> appears here automatically. Use the template below to get started.</p>
+        </div>
+        <div id="error-state" class="alert error" hidden role="alert"></div>
+      </section>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+      <section id="contribute" class="info-block" aria-labelledby="contribute-heading">
+        <h2 id="contribute-heading">Publish with Markdown</h2>
+        <p>
+          Keep your workflow simple. Write in Markdown, commit to the repository, and GitHub Pages (or any static host) takes care of the
+          rest. Front matter at the top of each file powers search, filters, and article metadata.
+        </p>
+        <div class="info-grid">
+          <div class="callout">
+            <strong>1. Create a markdown file</strong>
+            <p>Name it descriptively, like <code>incident-response.md</code>.</p>
+          </div>
+          <div class="callout">
+            <strong>2. Add helpful metadata</strong>
+            <p>Include title, description, tags, and a category so the site can organise it.</p>
+          </div>
+          <div class="callout">
+            <strong>3. Commit and push</strong>
+            <p>Once the file lands on the default branch, the knowledge base updates automatically.</p>
+          </div>
+        </div>
+        <pre><code>---
+title: Example Article
+description: One sentence summary of the article.
+category: Operations
+tags: [how-to, onboarding]
+updated: 2024-02-01
+---
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+Write the rest of your article in Markdown. Use headings, lists, code blocks, and images just like any README.</code></pre>
+        <p>
+          Need to hide a draft? Add <code>draft: true</code> to the front matter. You can also organise content into sub-folders inside
+          <code>docs/</code>; everything is indexed recursively.
+        </p>
+      </section>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+      <section id="faq" class="info-block" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Frequently asked questions</h2>
+        <ul>
+          <li><strong>Where are the articles stored?</strong> Every markdown file lives in the <code>docs/</code> directory of this repository.</li>
+          <li><strong>How do I share it?</strong> Point your custom domain at GitHub Pages or share <code>https://yxuan18.github.io</code>.</li>
+          <li><strong>Can I nest content?</strong> Yes. Place markdown files in sub-folders under <code>docs/</code>; they will still be indexed.</li>
+          <li><strong>Can I use another host?</strong> Absolutely. Any static hosting service that serves this repository works.</li>
+        </ul>
+      </section>
+    </main>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/06/hello-world/" data-id="cjyz6yuur0001fovwg0nu0dew" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/08/06/test-my-site/">test_my_site</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/06/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
+    <footer class="kb-footer">
+      <div class="container">
+        <nav aria-label="Footer">
+          <a href="#top">Back to top</a>
+          <a href="doc.html?doc=docs/how-to-add-content.md">Contributor guide</a>
+          <a href="https://github.com/Yxuan18/Yxuan18.github.io" rel="noopener" target="_blank">View source</a>
+        </nav>
+        <p>Built for Markdown-first teams. Deploy anywhere a static site can live.</p>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
+    </footer>
+  </body>
 </html>
