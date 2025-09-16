@@ -47,7 +47,6 @@
     };
 
     const getLanguage = () => (i18n && typeof i18n.getLanguage === 'function' ? i18n.getLanguage() : 'zh');
-
     const state = {
       docs: [],
       query: initialQuery,
@@ -61,7 +60,6 @@
         applyFilters();
       });
     }
-
     if (searchInput) {
       searchInput.value = initialQuery;
       searchInput.addEventListener('input', event => {
@@ -110,6 +108,7 @@
           const tags = KB.normalizeTags(parsed.data.tags);
           const rawCategory = parsed.data.category || parsed.data.section || null;
           const category = typeof rawCategory === 'string' ? rawCategory.trim() || null : rawCategory;
+
           const updated = parsed.data.updated || parsed.data.lastUpdated || parsed.data.date || null;
           const readTime = KB.estimateReadTime(parsed.content);
 
@@ -266,7 +265,9 @@
 
       if (!tagCounts.size) {
         const hint = document.createElement('p');
+
         hint.textContent = translate('tags.hint', null, 'Tags will appear once your articles include the "tags" front matter field.');
+
         hint.className = 'tag-hint';
         tagCloud.appendChild(hint);
         return;
@@ -276,7 +277,9 @@
         .sort((a, b) => a.localeCompare(b))
         .forEach(tag => {
           const button = document.createElement('button');
+
           const label = translate('tags.filterLabel', { tag: formatTagLabel(tag), count: tagCounts.get(tag) }, () => `${formatTagLabel(tag)} (${tagCounts.get(tag)})`);
+
           button.type = 'button';
           button.dataset.tag = tag;
           button.textContent = label;
@@ -309,6 +312,7 @@
 
       tagCloud.querySelectorAll('button[data-tag]').forEach(button => {
         const tag = button.dataset.tag;
+
         const isActive = state.activeTags.has(tag);
         button.dataset.active = isActive ? 'true' : 'false';
         button.setAttribute('aria-pressed', isActive ? 'true' : 'false');

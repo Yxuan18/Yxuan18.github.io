@@ -22,7 +22,6 @@
     const state = {
       metadata: null
     };
-
     let context;
     try {
       context = KB.normalizeContext(app);
