@@ -1,228 +1,158 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="meta.homeTitle">知识库 | 基于 Markdown 的帮助中心</title>
+    <meta
+      name="description"
+      content="提交 Markdown 文档，即可通过自定义域名在互联网上访问你的知识库。"
+      data-i18n-attr="content:meta.homeDescription"
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/knowledge-base.css">
+    <script defer src="js/i18n.js"></script>
+    <script defer src="js/kb-utils.js"></script>
+    <script defer src="js/knowledge-base.js"></script>
+  </head>
+  <body>
+    <header class="kb-header">
+      <div class="container">
+        <a class="brand" href="/">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a4 4 0 0 1 2.828 1.172l6 6A4 4 0 0 1 22 12v7a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-7a4 4 0 0 1 1.172-2.828l6-6A4 4 0 0 1 12 2Zm0 2a2 2 0 0 0-1.414.586l-6 6A2 2 0 0 0 4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7a2 2 0 0 0-.586-1.414l-6-6A2 2 0 0 0 12 4Z"/></svg>
+          <span data-i18n="brand.name">知识库</span>
+        </a>
+        <nav class="kb-nav" aria-label="主导航" data-i18n-attr="aria-label:nav.primaryLabel">
+          <a href="#top" data-i18n="nav.overview">概览</a>
+          <a href="#articles" data-i18n="nav.articles">文章</a>
+          <a href="#contribute" data-i18n="nav.contribute">贡献</a>
+        </nav>
+        <button
+          type="button"
+          id="language-toggle"
+          class="language-toggle"
+          data-i18n="language.toggle"
+          data-i18n-attr="aria-label:language.toggle,title:language.toggle"
+        >切换到英文</button>
       </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-test-my-site" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/06/test-my-site/" class="article-date">
-  <time datetime="2019-08-06T01:55:43.000Z" itemprop="datePublished">2019-08-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/06/test-my-site/">test_my_site</a>
-    </h1>
-  
+    </header>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/06/test-my-site/" data-id="cjyz6yuu60000fovw4bkdigsi" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+    <main id="kb-app" data-owner="Yxuan18" data-repo="Yxuan18.github.io" data-docs-path="docs">
+      <section class="hero" id="top">
+        <h1 data-i18n="hero.title">几分钟内上线你的知识库</h1>
+        <p data-i18n="hero.description" data-i18n-mode="html">
+          将 Markdown 文件放入 <code>docs/</code> 文件夹，它们就会立即在网上发布。通过搜索、筛选和分享集中管理团队所需的全部信息。
+        </p>
+        <div class="hero-actions">
+          <a class="primary" href="#articles" data-i18n="hero.cta.primary">浏览文章</a>
+          <a class="secondary" href="#contribute" data-i18n="hero.cta.secondary">发布新文章</a>
+        </div>
+        <div class="quick-stats" aria-label="知识库亮点" data-i18n-attr="aria-label:hero.quickStatsLabel">
+          <div class="stat">
+            <strong id="article-count">0</strong>
+            <span data-i18n="hero.stat.articles">已发布文章</span>
+            <small data-i18n="hero.stat.articlesDesc">当前可用的文章数量。</small>
+          </div>
+          <div class="stat">
+            <strong data-i18n="hero.stat.markdown">专注 Markdown</strong>
+            <span data-i18n="hero.stat.markdownDesc">在本地撰写内容并自动部署发布。</span>
+          </div>
+          <div class="stat">
+            <strong data-i18n="hero.stat.searchable">随时可搜索</strong>
+            <span data-i18n="hero.stat.searchableDesc">通过关键字、分类和标签进行筛选。</span>
+          </div>
+        </div>
+      </section>
 
+      <section class="tools" aria-label="知识库筛选与工具" data-i18n-attr="aria-label:tools.ariaLabel">
+        <div class="search-bar">
+          <label for="kb-search" data-i18n="search.label">搜索整个知识库</label>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9Z"/></svg>
+          <input
+            type="search"
+            id="kb-search"
+            name="search"
+            placeholder="按标题、主题或关键字搜索"
+            autocomplete="off"
+            data-i18n-attr="placeholder:search.placeholder"
+          >
+        </div>
+        <p id="result-count" class="result-count" aria-live="polite"></p>
+        <div id="active-filters" class="active-filters" hidden aria-live="polite"></div>
+        <div>
+          <h2 class="visually-hidden" data-i18n="tools.tagHeading">热门标签</h2>
+          <div id="tag-cloud" class="tag-cloud" aria-label="标签筛选" data-i18n-attr="aria-label:tags.ariaLabel"></div>
+        </div>
+      </section>
 
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/06/hello-world/" class="article-date">
-  <time datetime="2019-08-06T01:42:01.009Z" itemprop="datePublished">2019-08-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/06/hello-world/">Hello World</a>
-    </h1>
-  
+      <section id="articles" aria-label="知识库文章" data-i18n-attr="aria-label:articles.ariaLabel">
+        <div id="kb-loading" role="status" data-i18n="articles.loading">文章加载中…</div>
+        <div id="article-list" class="card-grid" hidden aria-live="polite"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <h2 data-i18n="articles.empty.title">发布你的第一篇文章</h2>
+          <p data-i18n="articles.empty.body" data-i18n-mode="html">
+            你添加到 <code>docs/</code> 的每个 Markdown 文件都会自动出现在这里。使用下面的模板开始创作。
+          </p>
+        </div>
+        <div id="error-state" class="alert error" hidden role="alert"></div>
+      </section>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+      <section id="contribute" class="info-block" aria-labelledby="contribute-heading">
+        <h2 id="contribute-heading" data-i18n="contribute.heading">使用 Markdown 发布</h2>
+        <p data-i18n="contribute.intro">
+          保持工作流简单。用 Markdown 撰写、提交到代码仓库，剩下的部署交给 GitHub Pages（或任意静态托管服务）。文件顶部的 Front Matter 将用于驱动搜索、筛选和文章元数据。
+        </p>
+        <div class="info-grid">
+          <div class="callout">
+            <strong data-i18n="contribute.callout1.title">1. 创建 Markdown 文件</strong>
+            <p data-i18n="contribute.callout1.body">使用描述性文件名，例如 <code>incident-response.md</code>。</p>
+          </div>
+          <div class="callout">
+            <strong data-i18n="contribute.callout2.title">2. 添加有用的元数据</strong>
+            <p data-i18n="contribute.callout2.body">包括标题、描述、标签和分类，站点即可自动组织内容。</p>
+          </div>
+          <div class="callout">
+            <strong data-i18n="contribute.callout3.title">3. 提交并推送</strong>
+            <p data-i18n="contribute.callout3.body">当文件进入默认分支后，知识库会自动更新。</p>
+          </div>
+        </div>
+        <pre><code>---
+title: Example Article
+description: One sentence summary of the article.
+category: Operations
+tags: [how-to, onboarding]
+updated: 2024-02-01
+---
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+Write the rest of your article in Markdown. Use headings, lists, code blocks, and images just like any README.</code></pre>
+        <p data-i18n="contribute.draftHint" data-i18n-mode="html">
+          需要隐藏草稿？在 Front Matter 中添加 <code>draft: true</code>。你也可以在 <code>docs/</code> 内的子文件夹中整理内容，系统会递归索引所有文件。
+        </p>
+      </section>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+      <section id="faq" class="info-block" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" data-i18n="faq.heading">常见问题</h2>
+        <ul>
+          <li data-i18n="faq.q1" data-i18n-mode="html"><strong>文章存放在哪里？</strong> 所有 Markdown 文件都位于仓库的 <code>docs/</code> 目录。</li>
+          <li data-i18n="faq.q2" data-i18n-mode="html"><strong>如何分享？</strong> 将你的自定义域名指向 GitHub Pages，或直接分享 <code>https://yxuan18.github.io</code>。</li>
+          <li data-i18n="faq.q3" data-i18n-mode="html"><strong>可以嵌套内容吗？</strong> 可以。将 Markdown 文件放入 <code>docs/</code> 的子文件夹中，系统同样会索引。</li>
+          <li data-i18n="faq.q4" data-i18n-mode="html"><strong>可以使用其他托管吗？</strong> 当然。任何能够托管此仓库的静态站点服务都可以。</li>
+        </ul>
+      </section>
+    </main>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/06/hello-world/" data-id="cjyz6yuur0001fovwg0nu0dew" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/08/06/test-my-site/">test_my_site</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/06/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
+    <footer class="kb-footer">
+      <div class="container">
+        <nav aria-label="底部导航" data-i18n-attr="aria-label:nav.footerLabel">
+          <a href="#top" data-i18n="nav.backToTop">返回顶部</a>
+          <a href="doc.html?doc=docs/how-to-add-content.md" data-i18n="nav.contributorGuide">贡献者指南</a>
+          <a href="https://github.com/Yxuan18/Yxuan18.github.io" rel="noopener" target="_blank" data-i18n="nav.viewSource">查看源码</a>
+        </nav>
+        <p data-i18n="footer.note">为以 Markdown 为中心的团队打造，可部署到任意静态站点。</p>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
+    </footer>
+  </body>
 </html>
